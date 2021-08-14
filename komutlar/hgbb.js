@@ -1,26 +1,27 @@
 module.exports = {
-        name: "hgbb",//Buraya Kod İsmi Yazılır
+        name: "hgbb",
         code: `$if[$message[1]==aç]
-                $setServerVar[hgbb;$mentionedChannels[1]]
-                $description[<:zt_onay:852916444181954593> HGBB Sistemi aktif edildi ve <#$mentionedChannels[1]> olarak ayarlandı.]
-                $color[ffdbfe]
-                $onlyIf[$mentionedChannels[1]!=;<:zt_red:852916499584122920> Bir kanal etiketle.]
-$endif
-      $if[$message[1]==kapat]
-      $setServerVar[hgbb;]
-                $description[<:zt_onay:852916444181954593> HGBB Sistemi kapatıldı.]
-                $color[ffdbfe]
+        $author[HGBB Sistemi Aktif Edildi.;$authorAvatar]
+        $description[HGBB sistemi açıldı. Ayarlanan kanal <#$mentionedChannels[1]> olarak ayarlandı.]
+        $color[$getServerVar[hex]] 
+        $setServerVar[hgbb;$mentionedChannels[1]]
+        $onlyIf[$mentionedChannels[1]!=; :x: | **Bir kanal etiketlemelisin.**]
         $endif
-         $if[$message[1]==resim]
-        $description[<:zt_onay:852916444181954593> HGBB sistemi ne resim eklendi.]
+        $if[$message[1]==kapat]
+        $author[HGBB Sistemi Deaktif Edildi.;$authorAvatar]
+         $description[HGBB sistemi kapatıldı.]
+        $color[$getServerVar[hex]] 
+        $setServerVar[hgbb;]
+        $endif
+        $if[$message[1]==resim]
+        $description[HGBB sistemi ne resim eklendi.]
         $image[$message[2]]
-        $color[ffdbfe] 
+        $color[$getServerVar[hex]] 
         $setServerVar[hgbbimage;$message[2]]
-        $onlyIf[$checkContains[$toLowercase[$message[2]];https://]==false;<:zt_red:852916499584122920> \`$message[2]\` diye bir link bulamadım.] 
-      
-        $onlyIf[$message[2]!=;<:zt_red:852916499584122920> Bir resim linki girmelisin.]
+        $onlyIf[$checkContains[$toLowercase[$message[2]];https://]==false;:x: | **Bu linkmi orosbu çocu düzgün kullan şu komutu**] 
+     
+        $onlyIf[$message[2]!=; :x: | **Bir bir resim linki girmen gerekli.**]
         $endif
-         $onlyIf[$checkContains[$toLowercase[$message];aç;kapat;resim]==true;<:zt_red:852916499584122920> \`$getServerVar[prefix]hgbb aç #kanal | $getServerVar[prefix]hgbb kapat | $getServerVar[prefix]hgbb resim <resim_url>\`]
-         $onlyPerms[admin;<:zt_red:852916499584122920> Bunun için yetkin yetersiz.]
-        `//Buraya Kodunuzu Yazınız
+        $onlyIf[$hasPerms[$authorID;admin]!=false;:x: | **Bu komut için __YÖNETİCİ__ yetkin olması lazım.**]
+        `
 }
