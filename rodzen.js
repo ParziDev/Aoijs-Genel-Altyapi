@@ -108,8 +108,9 @@ $thumbnail[$serverIcon]
 $addEmoji[$oldEmoji[url];$oldEmoji[name]]
 $onlyIf[$getServerVar[eklog]!=;]`
 })
-bot.awaitedCommand({
-  name:"onay",
+
+bot.command({
+  name:"yardım",
   code:` $author[Sa;$authorAvatar]
   $addField[Koruma;emoji-koruma, link-engel]
 $addField[Eğlence;howgay, 25miles, palyaço, biden, rte, trump, kaçcm, ]
@@ -121,6 +122,7 @@ $getServerVar[prefix]\`\`\`]
   $color[$getServerVar[hex]]
   $thumbnail[$authorAvatar]`
 })
+
 bot.awaitedCommand({
   name:"parzi",
   code:`
